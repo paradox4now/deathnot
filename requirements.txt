@@ -1,2 +1,7 @@
+
 gunicorn
+pandas
+numpy
+joblib
+scikit-learn
 flask>=3.0
