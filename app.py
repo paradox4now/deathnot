@@ -1,9 +1,11 @@
+import os
 from flask import Flask, request, jsonify, render_template
-import joblib, pandas as pd
+import joblib
+import pandas as pd
 
 app = Flask(__name__)
 model = joblib.load("model.pkl")
-FEATURES = ["age","sex","cp","trestbps","chol","fbs","restecg","thalach","exang","oldpeak","slope"]
+FEATURES = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope"]
 
 @app.route("/")
 def home():
@@ -23,4 +25,5 @@ def predict():
     return jsonify({"risk": round(prob * 100, 1)})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
