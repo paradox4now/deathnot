@@ -13,11 +13,11 @@ print(classification_report(y_test, model.predict(X_test)))
 
 joblib.dump(model, "model.pkl")
 
-import pandas as pd
-import joblib
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
+
+
+FEATURES = ["age","sex","cp","trestbps","chol","fbs","restecg","thalach","exang","oldpeak","slope"]
+X = df[FEATURES]
+y = df["target"]
 
 # 1. Load the dataset (make sure heart.csv is in the same folder)
 df = pd.read_csv("heart.csv")
@@ -37,5 +37,5 @@ model.fit(X_train, y_train)
 print(classification_report(y_test, model.predict(X_test)))
 
 # 6. Save the trained model file
-joblib.dump(model, "model1.pk1")
+joblib.dump(model, "model.pkl")
 print("Model successfully saved as model1.pk1")
